@@ -1,2 +1,2 @@
 # dollop
-A CMS we all deserve, but not one that we need. 
+A CMS we all deserve, not one we necessarily need. 
