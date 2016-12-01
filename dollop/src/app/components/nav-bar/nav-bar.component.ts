@@ -4,7 +4,7 @@ import { SitePrefs, Post } from '../../models';
 @Component({
   selector: 'nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.less']
 })
 export class NavBarComponent implements OnInit {
   title = "Dollop";

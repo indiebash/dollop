@@ -4,7 +4,7 @@ import { Post } from '../../models';
 @Component({
   selector: 'post-panel',
   templateUrl: './post-panel.component.html',
-  styleUrls: ['./post-panel.component.css']
+  styleUrls: ['./post-panel.component.less']
 })
 export class PostPanelComponent implements OnInit {
   @Input() post: Post;
