@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Post } from './models';
+import { RouterModule, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +7,5 @@ import { Post } from './models';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'app works!';
-  posts: Post[] = [
-    <Post>{Title: 'Example Post'},
-    <Post>{Title: 'Example Post'},
-    <Post>{Title: 'Example Post'}
-  ];
+  constructor() { }
 }
