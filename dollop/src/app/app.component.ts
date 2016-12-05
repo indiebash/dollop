@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {AngularFire, FirebaseListObservable} from 'angularFire2';
+import { SharedService } from './services';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  constructor() { }
+  items: FirebaseListObservable<any[]>;
+  constructor(af: AngularFire, sharedService: SharedService) {
+    this.items = af.database.list('/items');
+  }
 }
