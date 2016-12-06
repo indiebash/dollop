@@ -9,15 +9,16 @@ import { SharedService } from '../../../services';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public af: AngularFire, ) { }
+  constructor(public af: AngularFire, public sharedService: SharedService) {
+    this.login();
+  }
 
   login() {
     this.af.auth.login();
   }
 
   ngOnInit() {
-    this.af.auth.logout();
-    //this.af.auth.subscribe(s => this.sharedService.setVar('uid', s.uid));
+    this.af.auth.subscribe(s => this.sharedService.setVar('uid', s.uid));
   }
 
 }

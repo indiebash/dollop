@@ -11,6 +11,6 @@ import { SharedService } from './services';
 export class AppComponent {
   items: FirebaseListObservable<any[]>;
   constructor(af: AngularFire, sharedService: SharedService) {
-    this.items = af.database.list('/items');
+    //this.items = af.database.list('/items');
   }
 }

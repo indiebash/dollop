@@ -6,6 +6,7 @@ import { appRouterProviders } from './app.routes';
 import { AppComponent } from './app.component';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularFire2';
 import { SharedService } from './services';
+import { AuthGuard } from './services';
 
 // Must export the config
 export const firebaseConfig = {
@@ -46,7 +47,7 @@ import {
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
   ],
-  providers: [SharedService],
+  providers: [SharedService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
