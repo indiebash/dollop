@@ -6,7 +6,7 @@ const routes: Routes = [
 	...HomeRoutes,
   ...AdminRoutes,
 	{
-		path: '', redirectTo: 'home', pathMatch: 'full'
+		path: '', redirectTo: 'admin', pathMatch: 'full'
 	}
 ];
 

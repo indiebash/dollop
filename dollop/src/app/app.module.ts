@@ -17,8 +17,8 @@ export const firebaseConfig = {
 };
 
 const firebaseAuthConfig = {
-  provider: AuthProviders.Google,
-  method: AuthMethods.Redirect
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password
 }
 
 import {
@@ -29,6 +29,7 @@ import {
   DashboardComponent,
   LoginComponent
 } from './components';
+import { NewPostComponent } from './components/views/new-post/new-post.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {
     HomeComponent,
     AdminComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    NewPostComponent
   ],
   imports: [
     appRouterProviders,
