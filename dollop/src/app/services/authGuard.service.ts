@@ -16,11 +16,12 @@ export class AuthGuard implements CanActivate, OnInit {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.sharedService.getValue('uid')) {
+    let value = this.sharedService.getValue('uid');
+    if (value) {
       return true;
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigateByUrl('admin/login');
     }
-    //return false;
+    return false;
   }
 }
