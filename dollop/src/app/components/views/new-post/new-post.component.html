@@ -1,2 +1,31 @@
-<input type="text" [(ngModel)]="title">
-<button (click)="post()">Post</button>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <input type="text" class="form-control" [(ngModel)]="post.Title" placeholder="Title">
+    </div>
+    <div class="col-lg-12">
+      <textarea class="form-control" [(ngModel)]="post.Summary" placeholder="Summary" rows="2"></textarea>
+    </div>
+  </div>
+  <div class="row" *ngFor="let content of post.Content">
+    <div class="col-lg-12" *ngIf="content.Type === 0">
+      <label for="hdr">Header</label>
+      <input type="text" class="form-control" id="hdr" [(ngModel)]="content.Value">
+    </div>
+    <div class="col-lg-12" *ngIf="content.Type === 1">
+      <label for="prg">Paragraph</label>
+      <textarea class="form-control" id="prg" [(ngModel)]="content.Value" rows="5"></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2">
+      <button class="btn btn-primary sec-btn" (click)="addContent(0)">Header</button>
+    </div>
+    <div class="col-lg-2">
+      <button class="btn btn-primary sec-btn" (click)="addContent(1)">Paragraph</button>
+    </div>
+  </div>
+
+
+  <button class="btn btn-primary" (click)="savePost()">Save</button>
+</div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFire, FirebaseObjectObservable } from 'angularFire2';
+import { Post, Content, ContentType } from '../../../models';
 
 @Component({
   selector: 'new-post',
@@ -6,14 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-post.component.less']
 })
 export class NewPostComponent implements OnInit {
-  title: string;
+  post: Post;
 
-  constructor() { }
+  constructor(private af: AngularFire) { }
 
   ngOnInit() {
+    this.post = new Post();
   }
 
-  post(){
+  savePost(){
+    this.af.database.list('/posts').push(this.post);
+  }
 
+  addContent(type: number){
+    this.post.Content.push(new Content(type, this.post.Content.length, ''));
   }
 }

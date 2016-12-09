@@ -1,2 +1,2 @@
 export { SitePrefs } from './SitePrefs';
-export { Post } from './Post';
+export { Post, Content, ContentType } from './Post';
