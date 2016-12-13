@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../../models';
+import { AngularFire, FirebaseListObservable } from 'angularFire2';
 
 @Component({
   selector: 'app-home',
@@ -7,16 +8,12 @@ import { Post } from '../../../models';
   styleUrls: ['./home.component.less']
 })
 export class HomeComponent implements OnInit {
-  title = 'app works!';
-  posts: Post[] = [
-    <Post>{Title: 'Example Post'},
-    <Post>{Title: 'Example Post'},
-    <Post>{Title: 'Example Post'}
-  ];
+  posts: Post[];
 
-  constructor() { }
+  constructor(private af: AngularFire) { }
 
   ngOnInit() {
+    this.af.database.list('/posts').subscribe(x => this.posts = x);
   }
 
 }

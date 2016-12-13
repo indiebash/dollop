@@ -3,12 +3,14 @@ export class Post {
   Summary: string;
   Tags: string[];
   Content: Content[];
+  IsPublic: boolean;
 
-  constructor(title: string = undefined, summary: string = undefined, tags: string[] = [], content: Content[] = []) {
+  constructor(title: string = undefined, summary: string = undefined, tags: string[] = [], content: Content[] = [], isPublic: boolean = false) {
     this.Title = title;
     this.Summary = summary;
     this.Tags = tags;
     this.Content = content;
+    this.IsPublic = isPublic;
   }
 }
 
