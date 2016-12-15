@@ -14,7 +14,7 @@
       <input type="text" class="header-input" id="hdr" [(ngModel)]="content.Value" placeholder="Header">
     </div>
     <div class="col-lg-12" *ngIf="content.Type === 1">
-      <textarea class="paragraph-input" id="prg" [(ngModel)]="content.Value" rows="1" placeholder="paragraph"></textarea>
+			<div class="paragraph-input" contenteditable="true" [textContent]="content.Value" (input)="content.Value=$event.target.textContent">{{content.Value}}</div>
     </div>
   </div>
   <div class="row">
