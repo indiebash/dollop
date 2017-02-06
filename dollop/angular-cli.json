@@ -1,6 +1,6 @@
 {
   "project": {
-    "version": "1.0.0-beta.19-3",
+    "version": "1.0.0-beta.30",
     "name": "dollop"
   },
   "apps": [
@@ -13,12 +13,12 @@
       ],
       "index": "index.html",
       "main": "main.ts",
+      "polyfills": "polyfills.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.json",
       "prefix": "app",
-      "mobile": false,
       "styles": [
-        "styles.less"
+        "styles.css"
       ],
       "scripts": [],
       "environments": {
@@ -28,20 +28,28 @@
       }
     }
   ],
-  "addons": [],
-  "packages": [],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"
     }
   },
+  "lint": [
+    {
+      "files": "src/**/*.ts",
+      "project": "src/tsconfig.json"
+    },
+    {
+      "files": "e2e/**/*.ts",
+      "project": "e2e/tsconfig.json"
+    }
+  ],
   "test": {
     "karma": {
       "config": "./karma.conf.js"
     }
   },
   "defaults": {
-    "styleExt": "less",
+    "styleExt": "css",
     "prefixInterfaces": false,
     "inline": {
       "style": false,

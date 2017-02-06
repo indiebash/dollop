@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(public af: AngularFire, public sharedService: SharedService, public router: Router) {}
+  constructor(public af: AngularFire, public sharedService: SharedService, public router: Router) { }
 
   login() {
     this.af.auth.login({ email: this.email, password: this.password });
@@ -23,12 +23,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.af.auth.subscribe(s => {
-      if(s && s.uid) {
-        this.sharedService.setVar('uid', s.uid);
-        this.router.navigateByUrl('admin/dashboard');
-      }
-    });
+    if (this.sharedService.getValue('uid')) {
+      this.router.navigateByUrl('admin/dashboard');
+    }
   }
 
 }

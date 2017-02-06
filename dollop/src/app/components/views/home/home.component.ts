@@ -8,7 +8,7 @@ import { AngularFire, FirebaseListObservable } from 'angularFire2';
   styleUrls: ['./home.component.less']
 })
 export class HomeComponent implements OnInit {
-  posts: Post[];
+  posts: Post[] = [];
 
   constructor(private af: AngularFire) { }
 

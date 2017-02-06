@@ -10,4 +10,4 @@ const routes: Routes = [
 	}
 ];
 
-export const appRouterProviders = RouterModule.forRoot(routes);
+export const AppRouterProviders = RouterModule.forRoot(routes);

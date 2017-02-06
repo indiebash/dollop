@@ -2,11 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { appRouterProviders } from './app.routes';
+import { AppRouterProviders } from './app.routes';
 import { AppComponent } from './app.component';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularFire2';
 import { SharedService } from './services';
 import { AuthGuard } from './services';
+import {
+  NavBarComponent,
+  PostPanelComponent,
+  HomeComponent,
+  AdminComponent,
+  DashboardComponent,
+  LoginComponent,
+  NewPostComponent,
+} from './components';
 
 // Must export the config
 export const firebaseConfig = {
@@ -21,16 +30,6 @@ const firebaseAuthConfig = {
   method: AuthMethods.Password
 }
 
-import {
-  NavBarComponent,
-  PostPanelComponent,
-  HomeComponent,
-  AdminComponent,
-  DashboardComponent,
-  LoginComponent
-} from './components';
-import { NewPostComponent } from './components/views/new-post/new-post.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,10 +42,10 @@ import { NewPostComponent } from './components/views/new-post/new-post.component
     NewPostComponent
   ],
   imports: [
-    appRouterProviders,
     BrowserModule,
     FormsModule,
     HttpModule,
+    AppRouterProviders,
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
   ],
   providers: [SharedService, AuthGuard],

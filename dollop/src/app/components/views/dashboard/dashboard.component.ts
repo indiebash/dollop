@@ -9,8 +9,8 @@ import { Post } from '../../../models';
   styleUrls: ['./dashboard.component.less']
 })
 export class DashboardComponent implements OnInit {
-  posts: Post[];
-  
+  posts: Post[] = [];
+
   constructor(private router: Router, private af: AngularFire) { }
 
   ngOnInit() {
