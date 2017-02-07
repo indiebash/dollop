@@ -18,18 +18,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-12 add-header">
-      Add New
+    <div class="col-lg-6">
+        <post-content-dropdown (onClick)="addContent($event)"></post-content-dropdown>
     </div>
-    <div class="col-lg-2">
-      <button class="btn btn-primary sec-btn" (click)="addContent(0)">Header</button>
-    </div>
-    <div class="col-lg-2">
-      <button class="btn btn-primary sec-btn" (click)="addContent(1)">Paragraph</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-6">
       <button class="btn btn-primary save-btn" (click)="savePost()">Save Post</button>
     </div>
   </div>

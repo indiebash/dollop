@@ -1,8 +1,8 @@
 export class Post {
   Title: string;
   Summary: string;
-  Tags: string[];
-  Content: Content[];
+  Tags: string[] = [];
+  Content: Content[] = [];
   IsPublic: boolean;
 
   constructor(title: string = undefined, summary: string = undefined, tags: string[] = [], content: Content[] = [], isPublic: boolean = false) {

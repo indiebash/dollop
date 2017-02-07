@@ -1,0 +1,9 @@
+<div class="post-content-dropdown">
+	<button class="btn btn-primary content-btn" (click)="toggled = !toggled">Add Content<i class="caret pull-right"></i></button>
+	<div class="dropdown" *ngIf="toggled">
+		<div class="content-list">
+			<button class="item-btn" (click)="select(0)">Header</button>
+			<button class="item-btn" (click)="select(1)">Paragraph</button>
+		</div>
+	</div>
+</div>

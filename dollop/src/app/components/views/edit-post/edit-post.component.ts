@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFire, FirebaseObjectObservable } from 'angularFire2';
 import { Post, Content, ContentType } from '../../../models';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import * as _ from 'lodash'; 
+import * as _ from 'lodash';
 
 @Component({
   selector: 'edit-post',
@@ -11,28 +11,30 @@ import * as _ from 'lodash';
 })
 export class EditPostComponent implements OnInit {
   post: Post = new Post();
+  postId: string;
 
-  constructor(private af: AngularFire, private route: ActivatedRoute) { }
+  constructor(private af: AngularFire, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       if (params['id'] === 'new') {
         this.post = new Post();
       } else {
-        this.af.database.object('/posts/' + params['id']).subscribe(x => this.post = x);
+        this.postId = params['id'];
+        this.af.database.object('/posts/' + this.postId, {preserveSnapshot: true}).subscribe(x => this.post = x.val());
+        this.post.Content = this.post.Content ? this.post.Content : [];
+        this.post.Tags = this.post.Tags ? this.post.Tags : [];
       }
     });
   }
 
   savePost() {
-    console.log(this.post);
-    if(this.post['$key']){
-      this.af.database.list('/posts').remove(this.post['$key']);
-      this.post = _.map(this.post, (x:Post) => <Post>{Content: x.Content, IsPublic: x.IsPublic, Summary: x.Summary, Tags: x.Tags, Title: x.Title})
-      this.af.database.list('/posts').push(this.post);
+    if(this.postId){
+      this.af.database.list('/posts').update(this.postId, this.post);
     }else{
       this.af.database.list('/posts').push(this.post);
     }
+    this.router.navigateByUrl('admin/dashboard');
   }
 
   addContent(type: number) {

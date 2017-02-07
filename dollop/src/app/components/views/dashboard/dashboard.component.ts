@@ -22,7 +22,6 @@ export class DashboardComponent implements OnInit {
   }
 
   editPost(id: any){
-    console.log(id);
     this.router.navigateByUrl('admin/edit-post/' + id);
   }
 
