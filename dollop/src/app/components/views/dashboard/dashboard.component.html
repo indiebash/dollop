@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-3">
     <div class="list-group">
-      <button type="button" class="list-group-item list-group-item-action" *ngFor="let post of posts">{{post.Title}}</button>
+      <button type="button" class="list-group-item list-group-item-action" (click)="editPost(post.$key)" *ngFor="let post of posts">{{post.Title}}</button>
     </div>
     <div class="form-group">
       <button type="button" class="btn btn-success new-post-btn" (click)="newPost();"><i class="glyphicon glyphicon-plus"></i> New Post</button>

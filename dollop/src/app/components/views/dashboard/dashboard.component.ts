@@ -18,7 +18,12 @@ export class DashboardComponent implements OnInit {
   }
 
   newPost(){
-    this.router.navigateByUrl('admin/new-post');
+    this.router.navigateByUrl('admin/edit-post/new');
+  }
+
+  editPost(id: any){
+    console.log(id);
+    this.router.navigateByUrl('admin/edit-post/' + id);
   }
 
 }

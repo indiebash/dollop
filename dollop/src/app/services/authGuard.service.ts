@@ -17,18 +17,16 @@ export class AuthGuard implements CanActivate {
 
   constructor(private sharedService: SharedService, private router: Router, private af: AngularFire) { }
 
-  canActivate(): boolean {
-    var loggedIn = false;
-    console.log("Authenticating");
-    this.af.auth.subscribe(auth => {
-      if (auth) {
-        loggedIn = true;
-      } else {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return this.af.auth.map((auth) => {
+      if (!auth) {
         this.router.navigateByUrl('admin/login');
+        return false;
       }
-    })
-    return loggedIn;
+      return true;
+    }).take(1);
   }
+}
 
   // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
   //   if (this.af.auth.getAuth().uid) {
@@ -58,4 +56,3 @@ export class AuthGuard implements CanActivate {
   //   }
   //   return false;
   // }
-}
