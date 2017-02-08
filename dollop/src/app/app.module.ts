@@ -15,7 +15,8 @@ import {
   DashboardComponent,
   LoginComponent,
   EditPostComponent,
-  PostContentDropdownComponent
+  PostContentDropdownComponent,
+  ToggleSwitchComponent
 } from './components';
 
 // Must export the config
@@ -41,7 +42,8 @@ const firebaseAuthConfig = {
     DashboardComponent,
     LoginComponent,
     EditPostComponent,
-    PostContentDropdownComponent
+    PostContentDropdownComponent,
+    ToggleSwitchComponent
   ],
   imports: [
     BrowserModule,

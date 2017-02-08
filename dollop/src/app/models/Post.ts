@@ -1,9 +1,12 @@
+import * as moment from 'moment';
+
 export class Post {
   Title: string;
   Summary: string;
   Tags: string[] = [];
   Content: Content[] = [];
   IsPublic: boolean;
+  DatePublished: string;
 
   constructor(title: string = undefined, summary: string = undefined, tags: string[] = [], content: Content[] = [], isPublic: boolean = false) {
     this.Title = title;

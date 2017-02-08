@@ -3,6 +3,7 @@ import { AngularFire, FirebaseObjectObservable } from 'angularFire2';
 import { Post, Content, ContentType } from '../../../models';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as _ from 'lodash';
+import * as moment from 'moment';
 
 @Component({
   selector: 'edit-post',
@@ -19,6 +20,7 @@ export class EditPostComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params['id'] === 'new') {
         this.post = new Post();
+        this.post.IsPublic = false;
       } else {
         this.postId = params['id'];
         this.af.database.object('/posts/' + this.postId, {preserveSnapshot: true}).subscribe(x => this.post = x.val());
@@ -29,6 +31,9 @@ export class EditPostComponent implements OnInit {
   }
 
   savePost() {
+    if(!this.post.DatePublished && this.post.IsPublic) {
+      this.post.DatePublished = moment().format('MM/DD/YYYY').toString();
+    }
     if(this.postId){
       this.af.database.list('/posts').update(this.postId, this.post);
     }else{

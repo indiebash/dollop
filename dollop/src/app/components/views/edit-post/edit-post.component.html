@@ -1,4 +1,15 @@
 <div class="container">
+  <div class="row header">
+    <div class="row">
+      <div class="col-lg-6">
+        <post-content-dropdown (onClick)="addContent($event)"></post-content-dropdown>
+      </div>
+      <div class="col-lg-6">
+        <button class="btn btn-primary save-btn" (click)="savePost()">Save Post</button>
+        <toggle-switch class="pull-right" [trueText]="'Public'" [falseText]="'Private'" [(ngModel)]="post.IsPublic"></toggle-switch>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-lg-12">
       <label>Title</label>
@@ -14,15 +25,7 @@
       <input type="text" class="header-input" id="hdr" [(ngModel)]="content.Value" placeholder="Header">
     </div>
     <div class="col-lg-12" *ngIf="content.Type === 1">
-			<div class="paragraph-input" contenteditable="true" [textContent]="content.Value" (input)="content.Value=$event.target.textContent">{{content.Value}}</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-6">
-        <post-content-dropdown (onClick)="addContent($event)"></post-content-dropdown>
-    </div>
-    <div class="col-lg-6">
-      <button class="btn btn-primary save-btn" (click)="savePost()">Save Post</button>
+      <div class="paragraph-input" contenteditable="true" [textContent]="content.Value" (input)="content.Value=$event.target.textContent">{{content.Value}}</div>
     </div>
   </div>
 </div>
