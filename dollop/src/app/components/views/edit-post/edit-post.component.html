@@ -28,4 +28,5 @@
       <div class="paragraph-input" contenteditable="true" [textContent]="content.Value" (input)="content.Value=$event.target.textContent">{{content.Value}}</div>
     </div>
   </div>
+  <input type="file" accept="image/*" capture="camera" id="file-upload" (change)="saveImage($event.srcElement.files[0])">
 </div>

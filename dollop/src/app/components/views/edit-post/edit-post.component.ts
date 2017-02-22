@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFire, FirebaseObjectObservable } from 'angularFire2';
+import { Component, OnInit, Inject } from '@angular/core';
+import { AngularFire, FirebaseObjectObservable, FirebaseApp } from 'angularFire2';
 import { Post, Content, ContentType } from '../../../models';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import { FirebaseService } from '../../../services'
 
 @Component({
   selector: 'edit-post',
@@ -14,7 +15,7 @@ export class EditPostComponent implements OnInit {
   post: Post = new Post();
   postId: string;
 
-  constructor(private af: AngularFire, private route: ActivatedRoute, private router: Router) { }
+  constructor(private af: AngularFire, private route: ActivatedRoute, private router: Router, @Inject(FirebaseApp) private firebaseApp: any) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -45,4 +46,23 @@ export class EditPostComponent implements OnInit {
   addContent(type: number) {
     this.post.Content.push(new Content(type, this.post.Content.length, ''));
   }
+
+  saveImage(file: File) {
+    let ref = this.firebaseApp.storage().ref().child('images/' + file.name);
+    ref.put(file).then(function(snapshot){
+      console.log(snapshot);
+    });
+
+        // var filename = e1.target.files[0];
+        // var fr = new FileReader();
+        // fr.onload = function (res) {
+        //     $scope.image = res.target.result;
+        //     ImgObj.image = res.target.result;
+        //     ImgObj.$save().then(function (val) {
+        //     }, function (error) {
+        //         console.log("ERROR", error);
+        //     })
+        // };
+        // fr.readAsDataURL(filename);
+    }
 }
