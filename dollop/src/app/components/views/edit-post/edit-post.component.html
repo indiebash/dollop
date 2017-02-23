@@ -27,6 +27,9 @@
     <div class="col-lg-12" *ngIf="content.Type === 1">
       <div class="paragraph-input" contenteditable="true" [textContent]="content.Value" (input)="content.Value=$event.target.textContent">{{content.Value}}</div>
     </div>
+    <div class="col-lg-12" *ngIf="content.Type === 2">
+      <input type="file" accept="image/*" capture="camera" id="file-upload" (change)="saveImage($event.srcElement.files[0], content)" *ngIf="!content.Value">
+      <img src="{{content.Value}}" *ngIf="content.Value">
+    </div>
   </div>
-  <input type="file" accept="image/*" capture="camera" id="file-upload" (change)="saveImage($event.srcElement.files[0])">
 </div>

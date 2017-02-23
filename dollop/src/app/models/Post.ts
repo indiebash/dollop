@@ -31,5 +31,6 @@ export class Content {
 
 export enum ContentType {
   Header,
-  Paragraph
+  Paragraph,
+  Image
 }

@@ -4,7 +4,6 @@ import { Post, Content, ContentType } from '../../../models';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { FirebaseService } from '../../../services'
 
 @Component({
   selector: 'edit-post',
@@ -24,7 +23,7 @@ export class EditPostComponent implements OnInit {
         this.post.IsPublic = false;
       } else {
         this.postId = params['id'];
-        this.af.database.object('/posts/' + this.postId, {preserveSnapshot: true}).subscribe(x => this.post = x.val());
+        this.af.database.object('/posts/' + this.postId, { preserveSnapshot: true }).subscribe(x => this.post = x.val());
         this.post.Content = this.post.Content ? this.post.Content : [];
         this.post.Tags = this.post.Tags ? this.post.Tags : [];
       }
@@ -32,12 +31,12 @@ export class EditPostComponent implements OnInit {
   }
 
   savePost() {
-    if(!this.post.DatePublished && this.post.IsPublic) {
+    if (!this.post.DatePublished && this.post.IsPublic) {
       this.post.DatePublished = moment().format('MM/DD/YYYY').toString();
     }
-    if(this.postId){
+    if (this.postId) {
       this.af.database.list('/posts').update(this.postId, this.post);
-    }else{
+    } else {
       this.af.database.list('/posts').push(this.post);
     }
     this.router.navigateByUrl('admin/dashboard');
@@ -47,22 +46,11 @@ export class EditPostComponent implements OnInit {
     this.post.Content.push(new Content(type, this.post.Content.length, ''));
   }
 
-  saveImage(file: File) {
+  saveImage(file: File, content: Content) {
     let ref = this.firebaseApp.storage().ref().child('images/' + file.name);
-    ref.put(file).then(function(snapshot){
+    ref.put(file).then(function (snapshot) {
       console.log(snapshot);
+      content.Value = snapshot.downloadURL;
     });
-
-        // var filename = e1.target.files[0];
-        // var fr = new FileReader();
-        // fr.onload = function (res) {
-        //     $scope.image = res.target.result;
-        //     ImgObj.image = res.target.result;
-        //     ImgObj.$save().then(function (val) {
-        //     }, function (error) {
-        //         console.log("ERROR", error);
-        //     })
-        // };
-        // fr.readAsDataURL(filename);
-    }
+  }
 }
