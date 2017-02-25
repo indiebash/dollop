@@ -21,11 +21,13 @@ export class Content {
   Type: ContentType;
   Value: string;
   Ordinal: number;
+  ImageName: string;
 
-  constructor(type: ContentType, ordinal: number, value: string = undefined) {
+  constructor(type: ContentType, ordinal: number, value: string = undefined, imageName: string = undefined) {
     this.Type = type;
     this.Ordinal = ordinal;
     this.Value = value;
+    this.ImageName = imageName;
   }
 }
 

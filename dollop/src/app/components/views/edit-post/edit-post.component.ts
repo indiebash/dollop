@@ -23,9 +23,7 @@ export class EditPostComponent implements OnInit {
         this.post.IsPublic = false;
       } else {
         this.postId = params['id'];
-        this.af.database.object('/posts/' + this.postId, { preserveSnapshot: true }).subscribe(x => this.post = x.val());
-        this.post.Content = this.post.Content ? this.post.Content : [];
-        this.post.Tags = this.post.Tags ? this.post.Tags : [];
+        this.af.database.object('/posts/' + this.postId, { preserveSnapshot: true }).subscribe(x => {this.post = x.val(); this.post.Tags = this.post.Tags ? this.post.Tags : []} );
       }
     });
   }
@@ -43,6 +41,7 @@ export class EditPostComponent implements OnInit {
   }
 
   addContent(type: number) {
+    this.post.Content = this.post.Content ? this.post.Content : [];
     this.post.Content.push(new Content(type, this.post.Content.length, ''));
   }
 
@@ -51,6 +50,7 @@ export class EditPostComponent implements OnInit {
     ref.put(file).then(function (snapshot) {
       console.log(snapshot);
       content.Value = snapshot.downloadURL;
+      content.ImageName = file.name;
     });
   }
 }

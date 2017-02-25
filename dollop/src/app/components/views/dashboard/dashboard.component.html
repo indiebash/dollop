@@ -6,13 +6,15 @@
           <th>Title</th>
           <th>Tags</th>
           <th>Date Published</th>
+          <th>Visibility</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let post of posts" (click)="editPost(post.$key)">
           <td>{{post.Title}}</td>
-          <td></td>
+          <td>{{post.Tags ? post.Tags.join(', ') : ''}}</td>
           <td>{{post.DatePublished}}</td>
+          <td>{{post.IsPublic ? 'Public' : 'Private'}}</td>
         </tr>
       </tbody>
     </table>

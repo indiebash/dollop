@@ -19,6 +19,8 @@ import {
   ToggleSwitchComponent
 } from './components';
 
+import { RlTagInputModule } from 'angular2-tag-input';
+
 // Must export the config
 export const firebaseConfig = {
   apiKey: 'AIzaSyAt3n8P3R7lrUsyzld3M6uYvO5bxPelGXw',
@@ -50,7 +52,8 @@ const firebaseAuthConfig = {
     FormsModule,
     HttpModule,
     AppRouterProviders,
-    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
+    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
+    RlTagInputModule,
   ],
   providers: [SharedService, AuthGuard],
   bootstrap: [AppComponent]
