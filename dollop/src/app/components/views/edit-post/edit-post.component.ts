@@ -23,7 +23,7 @@ export class EditPostComponent implements OnInit {
         this.post.IsPublic = false;
       } else {
         this.postId = params['id'];
-        this.af.database.object('/posts/' + this.postId, { preserveSnapshot: true }).subscribe(x => {this.post = x.val(); this.post.Tags = this.post.Tags ? this.post.Tags : []} );
+        this.af.database.object('/posts/' + this.postId, { preserveSnapshot: true }).subscribe(x => { this.post = x.val(); this.post.Tags = this.post.Tags ? this.post.Tags : [] });
       }
     });
   }
@@ -42,7 +42,7 @@ export class EditPostComponent implements OnInit {
 
   addContent(type: number) {
     this.post.Content = this.post.Content ? this.post.Content : [];
-    this.post.Content.push(new Content(type, this.post.Content.length, ''));
+    this.post.Content.push(new Content(type, this.post.Content.length, '', ' '));
   }
 
   saveImage(file: File, content: Content) {
@@ -52,5 +52,13 @@ export class EditPostComponent implements OnInit {
       content.Value = snapshot.downloadURL;
       content.ImageName = file.name;
     });
+  }
+
+  deleteContent(content: Content, idx: number) {
+    if (content.Type === ContentType.Image) {
+      let ref = this.firebaseApp.storage().ref().child('images/' + content.ImageName);
+      ref.delete();
+    }
+    this.post.Content.splice(idx, 1);
   }
 }
